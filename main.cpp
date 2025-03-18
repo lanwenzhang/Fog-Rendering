@@ -7,7 +7,6 @@
 #include "application/camera/perspectiveCamera.h"
 #include "application/camera/gameCameraControl.h"
 #include "application/assimpLoader.h"
-#include "application/assimpInstanceLoader.h"
 
 #include "glframework/core.h"
 #include "glframework/shader.h"
@@ -69,11 +68,11 @@ void prepare() {
 
     auto sphereGeo = Geometry::createSphere(1.0f);
     auto sphereMat = new CubeMaterial();
-    sphereMat->mDiffuse = new Texture("assets/textures/bk.jpg", 0);
+    sphereMat->mDiffuse = new Texture("assets/textures/background.jpg", 0);
     auto sphereMesh = new Mesh(sphereGeo, sphereMat);
     scene->addChild(sphereMesh);
 
-    auto rock = AssimpLoader::load("assets/grid.obj");
+    auto rock = AssimpLoader::load("assets/models/rock.obj");
     rock->setScale(glm::vec3(10.0f, 10.0f, 10.0f));
     scene->addChild(rock);
 

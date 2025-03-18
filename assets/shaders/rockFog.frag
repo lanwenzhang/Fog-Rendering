@@ -7,7 +7,7 @@ out vec4 fragColor;
 uniform vec3 cameraPosition;
 
 uniform sampler2D rockSampler;	
-uniform sampler2D parallaxMapSampler;	
+uniform sampler2D displacementMapSampler;	
 
 void main(){
 

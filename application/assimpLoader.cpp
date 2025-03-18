@@ -108,8 +108,8 @@ Mesh* AssimpLoader::processMesh(aiMesh* aimesh, const aiScene* scene, const std:
 	auto material = new RockFogMaterial();
 
 	// 4 Create texture
-	material->mDiffuse = new Texture("assets/bkgd1.jpg", 0);
-	material->mParallaxMap = new Texture("assets/height.jpg", 1);
+	material->mDiffuse = new Texture("assets/textures/rock.jpg", 0);
+	material->mHeightMap = new Texture("assets/textures/height.jpg", 1);
 
 
 	return new Mesh(geometry, material);

@@ -22,9 +22,6 @@ void Renderer::setClearColor(glm::vec3 color) {
 
 void Renderer::render(Scene* scene, Camera* camera, DirectionalLight* dirLight, AmbientLight* ambLight) {
 
-
-
-
 	// 1 Depth and stencil test
 	// 1.1 Depth test
 	glEnable(GL_DEPTH_TEST);
@@ -42,10 +39,8 @@ void Renderer::render(Scene* scene, Camera* camera, DirectionalLight* dirLight, 
 
 	glStencilMask(0xFF);
 
-
 	// 1.4 Blend
 	glDisable(GL_BLEND);
-
 
 	// 2 Clear canvas
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -95,7 +90,7 @@ void Renderer::render(Scene* scene, Camera* camera, DirectionalLight* dirLight, 
 
 void Renderer::projectObject(Object* obj) {
 
-	if (obj->getType() == ObjectType::Mesh || obj->getType() == ObjectType::InstancedMesh) {
+	if (obj->getType() == ObjectType::Mesh) {
 
 		Mesh* mesh = (Mesh*)obj;
 		auto material = mesh->mMaterial;
@@ -184,7 +179,7 @@ void Renderer::renderObject(Object* object, Camera* camera, DirectionalLight* di
 			shader->setInt("cubeSampler", 0);
 			cubeMat->mDiffuse->bind();
 		}
-										break;
+			break;
 		case MaterialType::RockFogMaterial: {
 			// pointer type change
 			RockFogMaterial* phongMat = (RockFogMaterial*)material;
@@ -193,8 +188,8 @@ void Renderer::renderObject(Object* object, Camera* camera, DirectionalLight* di
 			shader->setInt("rockSampler", 0);
 			phongMat->mDiffuse->bind();
 
-			shader->setInt("parallaxMapSampler", 1);
-			phongMat->mParallaxMap->bind();
+			shader->setInt("displacementMapSampler", 1);
+			phongMat->mHeightMap->bind();
 
 			// 3.2.3 MVP matrix
 			shader->setMatrix4x4("modelMatrix", mesh->getModelMatrix());
@@ -216,7 +211,7 @@ void Renderer::renderObject(Object* object, Camera* camera, DirectionalLight* di
 
 
 		}
-										break;
+			break;
 		default:
 			break;
 		}

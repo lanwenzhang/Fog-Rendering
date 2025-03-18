@@ -11,5 +11,5 @@ public:
 
 public:
 	Texture* mDiffuse{ nullptr };
-	Texture* mParallaxMap{ nullptr };
+	Texture* mHeightMap{ nullptr };
 };

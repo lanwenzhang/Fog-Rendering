@@ -12,17 +12,16 @@ uniform mat4 viewMatrix;
 uniform mat4 projectionMatrix;
 
 uniform sampler2D rockSampler;	
-uniform sampler2D parallaxMapSampler;	
+uniform sampler2D displacementMapSampler;	
 
 
 void main(void)
 {	
 	
-	vec4 transformPosition = vec4(aPos, 1.0f) + vec4((aNormal * ((texture2D(parallaxMapSampler, aUV).r)/2.5f)), 1.0f);
+	vec4 transformPosition = vec4(aPos, 1.0f) + vec4((aNormal * ((texture2D(displacementMapSampler, aUV).r)/2.5f)), 1.0f);
 
 	uv = aUV;
 	
-
 	cameraSpaceRockPos = (viewMatrix * modelMatrix * transformPosition).xyz;
 
 	gl_Position = projectionMatrix * viewMatrix * modelMatrix * transformPosition;
